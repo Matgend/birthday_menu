@@ -291,4 +291,4 @@ def set_language(lang):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
