@@ -1,0 +1,27 @@
+/* Optional custom styling */
+h1 {
+    color: #ff6347;
+}
+
+.card {
+    border: 1px solid #e6e5e5;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Evenly spaces content */
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.fixed-image {
+    width: 50%; /* Sets image to fill the card width */
+    height: 200px; /* Set to desired height */
+    object-fit: cover; /* Ensures the image fills the set dimensions without distortion */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
