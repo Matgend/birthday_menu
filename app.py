@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, jsonify, session, redirect, url_for
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for, send_file
 from flask_sqlalchemy import SQLAlchemy
 import qrcode
 import os
 from dotenv import load_dotenv
+from io import BytesIO
 
 
 app = Flask(__name__)
@@ -269,16 +270,18 @@ def filter_items_de():
 
 
 @app.route('/generate_qr_code')
-def save_qr_code():
-    # Generate the URL for the root route
+def generate_qr_code():
+    # Generate the URL for the 'menu' route
     url = url_for('menu', _external=True)  # _external=True generates the full URL
     qr = qrcode.make(url)
     
-    # Save the QR code to a file in the static directory
-    qr_path = 'static/qr_code.png'
-    qr.save(qr_path)
+    # Save the QR code to an in-memory buffer
+    buffer = BytesIO()
+    qr.save(buffer, format="PNG")
+    buffer.seek(0)  # Move to the beginning of the BytesIO buffer
     
-    return f"QR code saved as {qr_path}. You can print it from the file."
+    # Return the QR code image directly to the browser
+    return send_file(buffer, mimetype = 'image/png')
 
 @app.route('/set_language/<lang>')
 def set_language(lang):
