@@ -3,13 +3,15 @@
 {% block content %}
 <!--MENU WITH FILTERS-->
 <div class="container">
-    <div class="container">
-        <div class="btn-group d-flex flex-wrap justify-content-center" role="group">
-            <button class="btn btn-light m-1 active" data-category="">{{ filter_title }}</button>
-            {% for category in categories %}
-                <button class="btn btn-light m-1" data-category="{{ category }}">{{ category }}</button>
-            {% endfor %}
+    <div class="row justify-content-center mb-4">
+        <div class="col-12 col-md-auto mb-2">
+            <button class="btn btn-light filter-btn active" data-category="">{{ filter_title }}</button>
         </div>
+        {% for category in categories %}
+            <div class="col-12 col-md-auto mb-2">
+                <button class="btn btn-light filter-btn" data-category="{{ category }}">{{ category }}</button>
+            </div>
+        {% endfor %}
     </div>
     <div class="row" id="menu-items"> <!-- ID added here for JavaScript targeting -->
         {% for item in items %}
